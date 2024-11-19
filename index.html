@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Since The Day</title>
+    <style type="text/css">
+        .words {
+            font-size: 140px;
+            font-family: 'Regular', cursive;
+            text-align: center;
+            color: white;
+        }
+
+        .days {
+            font-size: 132px;
+            font-family: 'Rye', cursive;
+            text-align: center;
+            color: white;
+        }
+
+        .seconds {
+            margin-top: 16px;
+            font-size: 24px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        body {
+            background-color: #66baf2;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="words">喜欢--诗涵</div>
+        <div class="days">
+            <span class="days-number">0</span> days
+        </div>
+        <div class="seconds">00 hours 00 minutes 00 seconds</div>
+    </div>
+
+    <script>
+        function updateNumbers() {
+            var beginTime = "2024-08-06 14:30:00";
+            var start_time = Date.parse(beginTime);
+            var duration = parseInt(Date.now() - start_time) / 1000;
+
+            var seconds = parseInt(duration % 60);
+            if (seconds < 10) seconds = "0" + seconds;
+            duration = parseInt(duration / 60);
+            var minutes = duration % 60;
+            if (minutes < 10) minutes = "0" + minutes;
+            duration = parseInt(duration / 60);
+            var hours = duration % 24;
+            if (hours < 10) hours = "0" + hours;
+            duration = parseInt(duration / 24);
+            var days = duration;
+
+            document.querySelector('.days-number').textContent = days;
+            document.querySelector('.seconds').textContent = hours + " hours " + minutes + " minutes " + seconds + " seconds";
+        }
+
+        setInterval(updateNumbers, 1000);
+        updateNumbers();
+    </script>
+</body>
+
+</html>
